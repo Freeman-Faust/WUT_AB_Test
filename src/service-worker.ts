@@ -78,3 +78,32 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+const express = require('express');
+const app = express();
+
+
+const arrAddBk: any = [
+    {
+    // I need a pic here that actually works, need to look that up, stringis a placeholder
+    image: "",
+    firstName: "Test",
+    lastName: "McTest",
+    email: "sample@a.com",
+    phone: "555-555-5555"
+    }
+];
+
+app.get('/',(req: any,res: any)=>{
+    const arrAddBkOutput = [];
+    for(const contact of arrAddBk.iterate())
+    {
+        arrAddBkOutput.push(contact);
+    }
+
+    res.end(JSON.stringify(arrAddBkOutput));
+});
+
+
+app.listen(8888); 
+
+console.log('Web server at port 8888 is running.')
